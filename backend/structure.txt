@@ -1,0 +1,26 @@
+project/
+├── src/
+│   ├── config/
+│   │   └── database.js
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── employeeController.js
+│   │   ├── evaluationController.js
+│   │   └── feedbackController.js
+│   ├── middleware/
+│   │   ├── auth.js
+│   │   ├── errorHandler.js
+│   │   └── validator.js
+│   ├── models/
+│   │   ├── User.js
+│   │   ├── Employee.js
+│   │   ├── Evaluation.js
+│   │   └── Feedback.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   ├── employees.js
+│   │   ├── evaluations.js
+│   │   └── feedback.js
+│   └── app.js
+├── .env
+└── package.json 
