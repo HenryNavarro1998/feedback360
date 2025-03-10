@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Pencil, Trash } from "@phosphor-icons/react";
 import evaluationService from '../../../services/evaluation.service';
-import LoadingSpinner from '../../../components/LoadingSpinner';
+import { LoadingSpinner } from '../../../components/LoadingSpinner/index';
 
 const ModelsGrid = styled.div`
   display: grid;

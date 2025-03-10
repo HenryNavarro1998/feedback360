@@ -6,7 +6,7 @@ import { EvaluationInfo } from './components/EvaluationInfo';
 import { EvaluationQuestions } from './components/EvaluationQuestions';
 import { EvaluationActions } from './components/EvaluationActions';
 import { PageContainer } from './styles';
-import LoadingSpinner from '../../../components/LoadingSpinner';
+import { LoadingSpinner } from '../../../components/LoadingSpinner/index';
 
 const EvaluationPage = () => {
   const { id } = useParams();

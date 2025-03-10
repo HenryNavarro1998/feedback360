@@ -1,3 +1,5 @@
+import { Evaluation } from '../../../EvaluationsPage/types';
+
 interface Employee {
   _id: string;
   firstName: string;
@@ -5,10 +7,11 @@ interface Employee {
 }
 
 export interface EvaluationInfoProps {
-  evaluation: {
-    employee?: Employee;
-    evaluator?: Employee;
-    overallScore?: number;
-    deadline?: string;
-  };
+  evaluation: Evaluation;
+}
+
+export interface InfoCardProps {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
 } 

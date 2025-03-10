@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import LoadingSpinner from './LoadingSpinner';
+import { LoadingSpinner } from './LoadingSpinner/index';
 
 const PrivateRoute = ({ children, allowedRoles = [] }) => {
   const { user, loading } = useAuth();
@@ -16,14 +16,7 @@ const PrivateRoute = ({ children, allowedRoles = [] }) => {
 
   if (loading) {
     console.log('PrivateRoute: Loading...');
-    return (
-      <div style={{ padding: '2rem' }}>
-        <LoadingSpinner />
-        <div style={{ textAlign: 'center', marginTop: '1rem' }}>
-          Verificando autenticación...
-        </div>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (!user) {

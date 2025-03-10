@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import evaluationService from '../../../services/evaluation.service';
-import LoadingSpinner from '../../../components/LoadingSpinner';
+import { LoadingSpinner } from '../../../components/LoadingSpinner/index';
 
 const Container = styled.div`
   display: flex;

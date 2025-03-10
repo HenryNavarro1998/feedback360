@@ -7,7 +7,7 @@ import RegisterPage from '../pages/auth/RegisterPage';
 import AdminDashboard from '../pages/dashboard/AdminDashboard';
 import ManagerDashboard from '../pages/dashboard/ManagerDashboard';
 import EmployeeDashboard from '../pages/dashboard/EmployeeDashboard';
-import EmployeesPage from '../pages/employees/EmployeesPage';
+import { EmployeesPage } from '../pages/employees/EmployeesPage';
 import { EvaluationsPage, EvaluationPage } from '../pages/evaluations';
 import UsersPage from '../pages/users/UsersPage';
 import CreateUserPage from '../pages/users/CreateUserPage';

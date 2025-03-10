@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import dashboardService from '../../services/dashboard.service';
 import evaluationService from '../../services/evaluation.service';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import { LoadingSpinner } from '../../components/LoadingSpinner/index';
 import {
   DashboardContainer,
   DashboardHeader,

@@ -4,7 +4,7 @@ import { CaretLeft } from "@phosphor-icons/react";
 import { useNavigate, useParams } from 'react-router-dom';
 import UserForm from '../../components/users/UserForm';
 import userService from '../../services/user.service';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import { LoadingSpinner } from '../../components/LoadingSpinner/index';
 
 const PageContainer = styled.div`
   padding: 2rem;

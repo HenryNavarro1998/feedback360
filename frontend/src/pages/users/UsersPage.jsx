@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Plus, PencilSimple, Trash } from "@phosphor-icons/react";
 import { useNavigate } from 'react-router-dom';
 import userService from '../../services/user.service';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import { LoadingSpinner } from '../../components/LoadingSpinner/index';
 
 const PageContainer = styled.div`
   padding: 2rem;

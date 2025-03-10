@@ -1,4 +1,8 @@
 export interface EvaluationHeaderProps {
   title: string;
-  status: 'pending' | 'in_progress' | 'completed';
+  status: 'draft' | 'in_progress' | 'completed';
+}
+
+export interface StatusBadgeProps {
+  status: 'draft' | 'in_progress' | 'completed';
 } 

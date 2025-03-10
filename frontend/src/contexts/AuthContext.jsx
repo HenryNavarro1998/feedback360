@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import authService from '../services/auth.service';
-import LoadingSpinner from '../components/LoadingSpinner';
+import { LoadingSpinner } from '../components/LoadingSpinner/index';
 
 const AuthContext = createContext(null);
 
@@ -50,17 +50,15 @@ export const AuthProvider = ({ children }) => {
     login,
     logout,
     isAuthenticated: !!user,
+    loading
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (
     <AuthContext.Provider value={value}>
-      <div style={{ display: loading ? 'block' : 'none' }}>
-        <LoadingSpinner />
-      </div>
       {children}
     </AuthContext.Provider>
   );
