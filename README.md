@@ -16,7 +16,7 @@ Sistema web para la gestión y evaluación del desempeño de empleados, implemen
 1. **Clonar el Repositorio**
 ```bash
 git clone [URL_DEL_REPOSITORIO]
-cd employee-evaluation-system
+cd feedback360
 ```
 
 2. **Configuración del Backend**
@@ -31,7 +31,7 @@ cp .env.example .env
 # Variables necesarias en .env:
 PORT=3000
 MONGODB_URI=mongodb://localhost:27017/employee-evaluation
-JWT_SECRET=tu_secreto_jwt
+JWT_SECRET=4V#rFf$34@x7W%Jk$d3D9!mP^Gn
 NODE_ENV=development
 CORS_ORIGIN=http://localhost:5173
 ```
@@ -134,6 +134,105 @@ proyecto/
     score: Number
   }]
 }
+```
+
+### Estructura de la Base de Datos
+
+```
+┌──────────────┐       ┌──────────────┐
+│    Users     │       │  Employees   │
+├──────────────┤       ├──────────────┤
+│ _id          │       │ _id          │
+│ email        │       │ firstName    │
+│ password     │       │ lastName     │
+│ role         │──┐    │ position     │
+│ employee     │──┼────│ department   │
+│ createdAt    │  │    │ managerId    │──┐
+│ updatedAt    │  │    │ createdAt    │  │
+└──────────────┘  │    │ updatedAt    │  │
+                  │    └──────────────┘  │
+                  │                      │
+┌──────────────┐  │    ┌──────────────┐ │
+│ Evaluations  │  │    │  EvalModels  │ │
+├──────────────┤  │    ├──────────────┤ │
+│ _id          │  │    │ _id          │ │
+│ modelId      │──┼────│ name         │ │
+│ employeeId   │──┘    │ description  │ │
+│ evaluatorId  │──┐    │ questions    │ │
+│ status       │  │    │ active       │ │
+│ responses    │  │    │ createdAt    │ │
+│ deadline     │  │    │ updatedAt    │ │
+│ createdAt    │  │    └──────────────┘ │
+│ updatedAt    │  │                     │
+└──────────────┘  │    ┌──────────────┐ │
+                  │    │  Questions    │ │
+┌──────────────┐  │    ├──────────────┤ │
+│  Responses   │  │    │ _id          │ │
+├──────────────┤  │    │ text         │ │
+│ _id          │  │    │ type         │ │
+│ evaluationId │──┘    │ options      │ │
+│ questionId   │       │ required     │ │
+│ answer       │       │ weight       │ │
+│ score        │       │ createdAt    │ │
+│ createdAt    │       │ updatedAt    │ │
+│ updatedAt    │       └──────────────┘ │
+└──────────────┘                        │
+                     ┌──────────────┐   │
+                     │  Feedback    │   │
+                     ├──────────────┤   │
+                     │ _id          │   │
+                     │ evaluationId │   │
+                     │ providerId   │───┘
+                     │ receiverId   │
+                     │ content      │
+                     │ createdAt    │
+                     │ updatedAt    │
+                     └──────────────┘
+```
+
+#### Relaciones Principales:
+
+1. **Users - Employees (1:1)**
+   - Cada usuario está asociado con un empleado
+   - El campo `employee` en Users referencia a Employees
+
+2. **Employees - Employees (N:1)**
+   - Relación jerárquica manager-empleado
+   - `managerId` referencia al empleado que es manager
+
+3. **Evaluations - EvalModels (N:1)**
+   - Cada evaluación usa un modelo de evaluación
+   - `modelId` referencia al modelo usado
+
+4. **Evaluations - Responses (1:N)**
+   - Cada evaluación tiene múltiples respuestas
+   - `evaluationId` en Responses referencia a la evaluación
+
+5. **Questions - EvalModels (N:1)**
+   - Cada modelo tiene múltiples preguntas
+   - Las preguntas están embebidas en el modelo
+
+6. **Feedback - Evaluations (N:1)**
+   - Cada evaluación puede tener múltiple feedback
+   - `evaluationId` en Feedback referencia a la evaluación
+
+#### Índices Principales:
+```javascript
+// Users
+{ email: 1 }  // Único
+{ role: 1 }   // Para búsquedas por rol
+
+// Employees
+{ managerId: 1 }  // Para búsquedas de equipos
+{ department: 1 } // Para agrupación por departamento
+
+// Evaluations
+{ employeeId: 1, status: 1 }  // Para búsquedas de evaluaciones por empleado
+{ evaluatorId: 1, status: 1 } // Para búsquedas de evaluaciones por evaluador
+{ deadline: 1 }               // Para búsquedas por fecha límite
+
+// Responses
+{ evaluationId: 1 }  // Para búsquedas de respuestas por evaluación
 ```
 
 4. **Seguridad Implementada**
