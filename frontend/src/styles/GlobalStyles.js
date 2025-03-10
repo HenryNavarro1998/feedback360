@@ -1,45 +1,72 @@
 import { createGlobalStyle } from 'styled-components';
+import { theme } from './theme';
 
-const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
+  html {
+    font-size: 16px;
+  }
+
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #f1f5f9;
-    color: #1e293b;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: ${theme.colors.background};
+    color: ${theme.colors.text};
     line-height: 1.5;
   }
 
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
+  a {
+    color: ${theme.colors.primary};
+    text-decoration: none;
+    transition: color ${theme.transitions.fast};
+
+    &:hover {
+      color: ${theme.colors.secondary};
+    }
   }
 
   button {
     cursor: pointer;
+    border: none;
+    outline: none;
+    font-family: inherit;
   }
 
-  a {
-    color: inherit;
-    text-decoration: none;
+  input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
   }
 
   h1, h2, h3, h4, h5, h6 {
+    color: ${theme.colors.text};
     font-weight: 600;
     line-height: 1.2;
   }
 
-  input, button, textarea, select {
-    font: inherit;
+  // Utilidades comunes
+  .container {
+    max-width: ${theme.breakpoints.desktop};
+    margin: 0 auto;
+    padding: 0 ${theme.spacing.medium};
   }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .mt-1 { margin-top: ${theme.spacing.small}; }
+  .mt-2 { margin-top: ${theme.spacing.medium}; }
+  .mt-3 { margin-top: ${theme.spacing.large}; }
+  .mt-4 { margin-top: ${theme.spacing.xlarge}; }
+
+  .mb-1 { margin-bottom: ${theme.spacing.small}; }
+  .mb-2 { margin-bottom: ${theme.spacing.medium}; }
+  .mb-3 { margin-bottom: ${theme.spacing.large}; }
+  .mb-4 { margin-bottom: ${theme.spacing.xlarge}; }
 
   /* Estilos para scrollbar personalizados */
   ::-webkit-scrollbar {
@@ -58,6 +85,4 @@ const GlobalStyles = createGlobalStyle`
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
-`;
-
-export default GlobalStyles; 
+`; 
